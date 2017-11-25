@@ -51,7 +51,7 @@ public class PsychologyServlet extends HttpServlet {
                         role = resultset.getString("userrole");
                     }
                     if (role.equals("student")) {                    
-                        query = "SELECT UserID, FirstName, LastName, Useremail, UserRole, UserPsychMajor, UserPsychMinor, TotalCompleted FROM users WHERE (firstname = ? AND lastname = ?)";
+                        query = "SELECT UserID, FirstName, LastName, Useremail, UserRole, UserPsychMajor, UserPsychMinor, CreditsCompleted FROM users WHERE (firstname = ? AND lastname = ?)";
                         ps = connection.prepareStatement(query);
                         ps.setString(1, arr[0]);
                         ps.setString(2, arr[1]);
@@ -90,7 +90,7 @@ public class PsychologyServlet extends HttpServlet {
                 }
                 else {
                     /* showing specified student data */
-                    query = "SELECT UserID, FirstName, LastName, Useremail, UserRole, UserPsychMajor, UserPsychMinor, TotalCompleted FROM users WHERE userrole = 'student'";
+                    query = "SELECT UserID, FirstName, LastName, Useremail, UserRole, UserPsychMajor, UserPsychMinor, CreditsCompleted FROM users WHERE userrole = 'student'";
                     ps = connection.prepareStatement(query);
                     resultset = ps.executeQuery();
                     table += db.getResultSetTable(resultset);
@@ -250,7 +250,7 @@ public class PsychologyServlet extends HttpServlet {
                    
                 }   
                 /* Querying and showing student's name and data about his/her research */
-                query = "SELECT UserID, FirstName, LastName, UserEmail, UserRole, UserPsychMajor, UserPsychMinor, TotalCompleted FROM users WHERE useremail = '" + studentEmail + "'";
+                query = "SELECT UserID, FirstName, LastName, UserEmail, UserRole, UserPsychMajor, UserPsychMinor, CreditsCompleted FROM users WHERE useremail = '" + studentEmail + "'";
                 ps = connection.prepareStatement(query);
                 resultset = ps.executeQuery();
                 table += db.getResultSetTable(resultset);
